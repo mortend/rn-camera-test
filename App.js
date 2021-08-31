@@ -7,6 +7,7 @@ class App extends Component {
     return (
       <View style={styles.container}>
         <RNCamera
+          cameraId={"1"}
           style={{ flex: 1, alignItems: 'center' }}
           captureAudio={false}
           ref={ref => {
@@ -15,6 +16,11 @@ class App extends Component {
         />
         <Button
           onPress={async () => {
+            this.camera.getCameraIdsAsync().then(ids => {
+              for (let i = 0; i < ids.length; i++)
+                console.log(ids[i].id, ids[i].type, ids[i].deviceType)
+            })
+
             // not to being spammed.
             // if (takingPic) {
             //   return;
